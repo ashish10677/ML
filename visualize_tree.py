@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.datasets import load_iris
 from sklearn import tree
+import graphviz
 
 iris = load_iris()
 
@@ -19,3 +20,8 @@ clf.fit(train_data, train_target)
 
 print(test_target)
 print(clf.predict(test_data))
+
+#visualize tree
+dot_data = tree.export_graphviz(clf, out_file=None)
+graph = graphviz.Source(dot_data) 
+graph.render("iris") 
